@@ -1,0 +1,52 @@
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ai_service}
+    username: ${SPRING_DATASOURCE_USERNAME:ai_service}
+    password: ${SPRING_DATASOURCE_PASSWORD:ai_service}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+
+  ai:
+    model:
+      chat: google-genai
+      embedding:
+        text: google-genai
+
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY}
+        chat:
+          model: ${GEMINI_CHAT_MODEL:gemini-2.5-flash}
+        embedding:
+          api-key: ${GEMINI_API_KEY}
+          text:
+            model: ${GEMINI_EMBEDDING_MODEL:text-embedding-004}
+            task-type: RETRIEVAL_DOCUMENT
+
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
