@@ -3,6 +3,8 @@ spring:
     gateway:
       server:
         webflux:
+          default-filters:
+            - AddRequestHeader=Gateway-Source, api-gateway
           routes:
             - id: product-hub
               uri: lb://product-hub
