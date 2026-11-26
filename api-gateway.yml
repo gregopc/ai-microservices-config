@@ -1,5 +1,5 @@
 app:
-  demo-message: "Mensagem inicial carregada do Config Server"
+  demo-message: "Mensagem atualizada dinamicamente"
 
 spring:
   cloud:
