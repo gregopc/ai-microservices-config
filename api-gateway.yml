@@ -1,5 +1,5 @@
 app:
-  demo-message: "Mensagem atualizada dinamicamente"
+  demo-message: "Mensagem inicial carregada do Config Server"
 
 spring:
   cloud:
@@ -26,7 +26,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,gateway
+        include: health,info,gateway,refresh
 
   endpoint:
     gateway:
